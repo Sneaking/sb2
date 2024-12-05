@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cm-editor {
+    height: calc(100vh - 120px);
+    font-family: 'Fira Code', monospace;
+}
+
+.cm-scroller {
+    overflow: auto;
+    height: 100%;
+}
