@@ -4,7 +4,7 @@ export async function getAIResponse(message) {
     const apiKey = process.env.OPENAI_API_KEY || import.meta.env.VITE_OPENAI_API_KEY;
 
     if (!apiKey) {
-        throw new Error('OpenAI API key not found in environment variables.');
+        return { error: 'OpenAI API key not found in environment variables.' };
     }
 
     try {
@@ -24,13 +24,13 @@ export async function getAIResponse(message) {
         if (!response.ok) {
             const errorData = await response.json();
             console.error('OpenAI API Error:', errorData);
-            throw new Error(errorData.error?.message || 'Failed to fetch AI response.');
+            return { error: errorData.error?.message || 'Failed to fetch AI response.' };
         }
 
         const data = await response.json();
-        return data.choices[0].message.content;
+        return { content: data.choices[0].message.content };
     } catch (error) {
         console.error('Error during OpenAI API call:', error);
-        throw new Error('An unexpected error occurred while processing the AI response.');
+        return { error: 'An unexpected error occurred while processing the AI response.' };
     }
 }
