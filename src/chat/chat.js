@@ -20,9 +20,13 @@ export function initChat(editor) {
 
         try {
             const response = await getAIResponse(message);
-            appendMessage('assistant', response);
+            if (response.error) {
+                appendMessage('system', `Error: ${response.error}`);
+            } else {
+                appendMessage('assistant', response.content);
+            }
         } catch (error) {
-            appendMessage('system', 'Error: Could not get AI response');
+            appendMessage('system', 'Unexpected error occurred while fetching AI response.');
         }
     });
 }
