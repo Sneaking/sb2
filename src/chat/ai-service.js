@@ -30,7 +30,7 @@ export async function getAIResponse(message) {
         const data = await response.json();
         return { content: data.choices[0].message.content };
     } catch (error) {
-        console.error('Error during OpenAI API call:', error);
-        return { error: 'An unexpected error occurred while processing the AI response.' };
+    console.error('Error during OpenAI API call:', error); // Logs detailed error to console
+    return { error: `Unexpected error: ${error.message}` }; // Includes error message in response
     }
 }
