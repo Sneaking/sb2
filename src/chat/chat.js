@@ -26,7 +26,7 @@ export function initChat(editor) {
                 appendMessage('assistant', response.content);
             }
         } catch (error) {
-            appendMessage('system', 'Unexpected error occurred while fetching AI response.');
+            appendMessage('system', `Unexpected error ${error.message}`);
         }
     });
 }
