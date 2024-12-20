@@ -2,12 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 
 .cm-editor {
     height: calc(100vh - 120px);
     font-family: 'Fira Code', monospace;
+}
+*/
+
+.cm-editor {
+    height: 100%;
+    min-height: 100vh;
+    font-family: 'Fira Code', monospace;
+    overflow: hidden;
 }
 
 .cm-scroller {
     overflow: auto;
     height: 100%;
+}
+
+.cm-line {
+    min-height: 1.5em;
 }
