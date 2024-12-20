@@ -9,9 +9,17 @@ export function initEditor() {
         doc: defaultDocument,
         extensions: [
             ...defaultExtensions,
-            EditorView.updateListener.of(update => {
+            EditorView.updateListener.of((update) => {
                 if (update.docChanged) {
-                    updateCursorPosition(update.state);
+                    const pos = update.state.selection.main.head;
+                    const line = update.state.doc.lineAt(pos);
+
+                    // Handle empty lines explicitly
+                    if (line.text.trim() === "") {
+                        update.view.dispatch({
+                            changes: { from: pos, insert: "\n" }
+                        });
+                    }
                 }
             })
         ]
@@ -22,6 +30,5 @@ export function initEditor() {
         parent: document.getElementById('editor-container')
     });
 
-    setupLanguageSwitch(view);
     return view;
 }
