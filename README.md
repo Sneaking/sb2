@@ -12,9 +12,6 @@ to launch in browser
 
 Longer howto:
 
-Here's a concise README.md template for your Sb2 project:
-
-
 ---
 
 Sb2 - Modern Web-Based Text Editor
@@ -28,7 +25,8 @@ Features
 
 Syntax Highlighting: Supports JavaScript, Python, HTML, and CSS.
 
-Customizable Themes: Includes the "Sn_Marina Sync" theme.
+Customizable Themes: Includes dark theme.
+WIP
 
 File Operations: Create, open, and save files seamlessly.
 
@@ -63,7 +61,6 @@ npm run dev
 4. Access the Application: Open your browser and navigate to or other port Vite suggests:
 
 http://localhost:3000
-
 
 
 
