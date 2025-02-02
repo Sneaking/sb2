@@ -14,7 +14,7 @@ export async function getAIResponse(message, maxTokens = 200) {
   }
 
   try {
-    // Make the API call to OpenAI's chat completions endpoint using GPT-4.
+    // Make the API call using GPT-4 by default.
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -22,9 +22,9 @@ export async function getAIResponse(message, maxTokens = 200) {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: "gpt-4",
+        model: "gpt-4", // Using GPT-4 as the default reasoning model.
         messages: [{ role: "user", content: message }],
-        max_tokens: maxTokens  // Dynamic token count limit
+        max_tokens: maxTokens
       }),
     });
 
@@ -40,15 +40,4 @@ export async function getAIResponse(message, maxTokens = 200) {
     console.error('Error during OpenAI API call:', error);
     return { error: 'An unexpected error occurred while processing the AI response.' };
   }
-}            return { error: errorData.error?.message || 'Failed to fetch AI response.' };
-        }
-
-        // Parse and return the response data
-        const data = await response.json();
-        return { content: data.choices[0].message.content };
-    } catch (error) {
-        // Log and return any unexpected errors
-        console.error('Error during OpenAI API call:', error);
-        return { error: 'An unexpected error occurred while processing the AI response.' };
-    }
 }
